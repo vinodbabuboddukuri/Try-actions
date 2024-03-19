@@ -12,4 +12,4 @@ jobs:
       - name: Authenticate with Google Cloud Platform
         uses: google-github-actions/authenticate@v0
         with:
-          credentials_json: ${{ secrets.GCP_CREDENTIALS }}
+          credentials_json: ${{ secrets.GCP_CREDENTIALS}}
