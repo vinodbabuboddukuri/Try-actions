@@ -19,7 +19,7 @@ jobs:
         uses: google-github-actions/docker@v0
         with:
           push: true
-          tags: gcr.io/$PROJECT_ID/your-image-name:latest
+          tags: gcr.io/$PROJECT_ID/test:latest
         env:
           PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
           GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GCP_CREDENTIALS }}
