@@ -1,0 +1,15 @@
+name: Authenticate GCP Account
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  authenticate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Authenticate with Google Cloud Platform
+        uses: google-github-actions/authenticate@v0
+        with:
+          credentials_json: ${{ secrets.GCP_CREDENTIALS }}
