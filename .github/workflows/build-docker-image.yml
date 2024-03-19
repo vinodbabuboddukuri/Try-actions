@@ -4,7 +4,7 @@ on:
   workflow_run:
     workflows: ["Authenticate with GCP"]
     types:
-     - succeeded 
+     - success 
 
 jobs:
   build:
