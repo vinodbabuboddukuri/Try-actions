@@ -1,10 +1,11 @@
 name: Push Docker Image to Artifact Registry
 
 on:
-  push:
-    branches:
-      - main
-
+  workflow_run:
+    workflows: ["Build Docker Image"]
+    types:
+      - success
+ 
 jobs:
   push:
     runs-on: ubuntu-latest
