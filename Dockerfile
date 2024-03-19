@@ -4,17 +4,17 @@ FROM python:3.9-slim
 # Set the working directory in the container
 WORKDIR /app
 
-# Copy the current directory contents into the container at /app
-COPY . /app
+# Copy the Python script into the container
+COPY python.py /app/python.py
 
-# Install any needed dependencies specified in requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt
+# Install any needed dependencies
+RUN pip install --no-cache-dir pylint
 
-# Make port 8080 available to the world outside this container
-EXPOSE 8080
+# Run pylint to lint the Python script
+RUN pylint python.py
 
 # Define environment variable
-ENV NAME World
+ENV GOOGLE_APPLICATION_CREDENTIALS=/path/to/your/credentials.json
 
-# Run app.py when the container launches
+# Run the Python script
 CMD ["python", "python.py"]
