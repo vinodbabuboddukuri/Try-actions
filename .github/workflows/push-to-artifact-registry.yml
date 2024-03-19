@@ -16,9 +16,9 @@ jobs:
         uses: google-github-actions/setup-gcloud@v1
 
       - name: Authenticate with Google Cloud
-        uses: google-github-actions/auth@v0
+        uses: google-github-actions/auth@v1
         with:
-          service_account_key: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
+          credentials_json: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
 
       - name: Configure Docker to use gcloud as a credential helper
         run: |
@@ -27,7 +27,7 @@ jobs:
       - name: Check if the repository exists
         id: check_repo
         run: |
-          if gcloud artifacts repositories describe your-image-name --location=us-central1 >/dev/null 2>&1; then
+          if gcloud artifacts repositories describe testing --location=us-central1 >/dev/null 2>&1; then
             echo "::set-output name=exists::true"
           else
             echo "::set-output name=exists::false"
@@ -37,7 +37,7 @@ jobs:
       - name: Create the repository if it doesn't exist
         if: steps.check_repo.outputs.exists == 'false'
         run: |
-          gcloud artifacts repositories create your-image-name --location=us-central1
+          gcloud artifacts repositories create testing --location=us-central1
 
       - name: Build Docker image
         run: docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/test:latest .
