@@ -10,7 +10,7 @@ COPY python.py /app/python.py
 # Install any needed dependencies
 RUN pip install --no-cache-dir pylint
 
-# Run pylint to lint the Python script palani
+# Run pylint to lint the Python script abhi
 RUN pylint python.py
 
 # Define environment variable
