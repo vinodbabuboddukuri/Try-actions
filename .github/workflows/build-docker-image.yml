@@ -1,6 +1,10 @@
 name: Build Docker Image
 
 on:
+  workflow_run:
+    workflows: ["Authenticate with GCP"]
+    types:
+     - completed 
   push:
     branches:
       - main
