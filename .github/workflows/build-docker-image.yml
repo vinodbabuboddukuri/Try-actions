@@ -19,8 +19,7 @@ jobs:
           project_id: ${{ secrets.GCP_PROJECT_ID }}
           service_account_key: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
 
-      # - name: Build Docker image
-      #   run: docker build -t test:latest .
-
       - name: Build Docker image
-        run: docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/test:latest .
+        run: docker build -t test:latest .
+
+    
