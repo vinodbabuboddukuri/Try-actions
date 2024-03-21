@@ -41,8 +41,8 @@ jobs:
           gcloud artifacts repositories create test --location=us-central1 --repository-format=docker
 
 
-      - name: Build Docker image
-        run: docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/test:latest .
+      # - name: Build Docker image
+      #   run: docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/test:latest .
 
       - name: Push Docker image to Artifact Registry
         run: |
