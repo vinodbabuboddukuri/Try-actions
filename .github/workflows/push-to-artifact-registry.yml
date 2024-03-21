@@ -36,7 +36,7 @@ jobs:
         continue-on-error: true
 
       - name: Create the repository if it doesn't exist
-        if: steps.check_repo.outputs.exists == 'false'
+        if: steps.check_repo.outputs.exists != 'true'
         run: |
           gcloud artifacts repositories create test --location=us-central1 --repository-format=docker
 
