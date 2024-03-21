@@ -25,26 +25,6 @@ jobs:
         run: |
           gcloud auth configure-docker
 
-      - name: Check if the repository exists
-        id: check_repo
-        run: |
-          if gcloud artifacts repositories describe test --location=us-central1 >/dev/null 2>&1; then
-            echo "::set-output name=exists::true"
-          else
-            echo "::set-output name=exists::false"
-          fi
-        continue-on-error: true
-
-      - name: Create the repository if it doesn't exist
-        if: steps.check_repo.outputs.exists == 'false'
-        run: |
-          gcloud artifacts repositories create test --location=us-central1 --repository-format=docker
-
-
-      # - name: Build Docker image
-      #   run: docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/test:latest .
-
       - name: Push Docker image to Artifact Registry
         run: |
           docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/test:latest
-
