@@ -1,4 +1,4 @@
-name: Push Docker Image to Artifact Registry
+name: Build and Push Docker Image
 
 on:
   workflow_run:
@@ -7,7 +7,7 @@ on:
       - completed
  
 jobs:
-  push:
+  build-and-push:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -40,10 +40,7 @@ jobs:
         run: |
           gcloud artifacts repositories create test --location=us-central1 --repository-format=docker
 
-
-      - name: Build Docker image
-        run: docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/test:latest .
-
-      - name: Push Docker image to Artifact Registry
+      - name: Build and Push Docker image to Artifact Registry
         run: |
+          docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/test:latest .
           docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/test:latest
