@@ -2,9 +2,9 @@ name: Build and Push Docker Image
 
 on:
   workflow_run:
-    workflows: ["Build Docker Image"]
+    workflows: ["Authenticate with GCP"]
     types:
-      - completed
+     - completed
  
 jobs:
   build-and-push:
