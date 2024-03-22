@@ -46,7 +46,6 @@
 #           docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/test:latest
 
 
-
 name: Build and Push Docker Image
 
 on:
@@ -93,4 +92,3 @@ jobs:
         run: |
           docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ env.REPOSITORY_NAME }}:latest .
           docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ env.REPOSITORY_NAME }}:latest
-
